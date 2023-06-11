@@ -22,8 +22,8 @@
     CompatiblePSEditions = @('Desktop', 'Core')
 
     # Which PowerShell functions are exported from your module? (eg. Get-CoolObject)
-    ###function StringifyArray{param([array]$Array)"@('" + $($array -join ', ') + "')"};StringifyArray (Get-ChildItem functions | select -ExpandProperty BaseName) | clip
-    FunctionsToExport    = @('Get-FREDCategory, Get-FredCategoryChildren, Get-FredCategoryRelated, Get-FREDCategoryRelatedTags, Get-FREDCategorySeries, Get-FREDCategoryTag, Get-FREDRelatedTag, Get-FREDRelease, Get-FREDReleaseDate, Get-FREDReleaseRelatedTag, Get-FREDReleases, Get-FREDReleasesDates, Get-FREDReleaseSeries, Get-FREDReleaseSource, Get-FREDReleaseTable, Get-FREDReleaseTag, Get-FREDSeries, Get-FREDSeriesCategories, Get-FREDSeriesObservations, Get-FREDSeriesRelease, Get-FREDSeriesSearch, Get-FREDSeriesSearchRelatedTag, Get-FREDSeriesSearchTag, Get-FREDSeriesTag, Get-FREDSeriesUpdates, Get-FREDSeriesVintagedates, Get-FREDSource, Get-FREDSourceReleases, Get-FREDSources, Get-FREDTag, Get-FREDTagSeries, Set-MyFREDAPIKey')
+    ###function StringifyArray{param([array]$Array)"@('" + $($array -join "', '") + "')"};StringifyArray (Get-ChildItem functions | select -ExpandProperty BaseName) | clip
+    FunctionsToExport    = @('Get-FREDCategory', 'Get-FredCategoryChildren', 'Get-FredCategoryRelated', 'Get-FREDCategoryRelatedTags', 'Get-FREDCategorySeries', 'Get-FREDCategoryTag', 'Get-FREDRelatedTag', 'Get-FREDRelease', 'Get-FREDReleaseDate', 'Get-FREDReleaseRelatedTag', 'Get-FREDReleases', 'Get-FREDReleasesDates', 'Get-FREDReleaseSeries', 'Get-FREDReleaseSource', 'Get-FREDReleaseTable', 'Get-FREDReleaseTag', 'Get-FREDSeries', 'Get-FREDSeriesCategories', 'Get-FREDSeriesObservations', 'Get-FREDSeriesRelease', 'Get-FREDSeriesSearch', 'Get-FREDSeriesSearchRelatedTag', 'Get-FREDSeriesSearchTag', 'Get-FREDSeriesTag', 'Get-FREDSeriesUpdates', 'Get-FREDSeriesVintagedates', 'Get-FREDSource', 'Get-FREDSourceReleases', 'Get-FREDSources', 'Get-FREDTag', 'Get-FREDTagSeries', 'Get-MyFREDAPIKey', 'Set-MyFREDAPIKey')
 
     # Which PowerShell aliases are exported from your module? (eg. gco)
     AliasesToExport      = @('')
