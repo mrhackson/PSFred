@@ -1,4 +1,5 @@
 Function Get-FredCategory{
+    [CmdletBinding()]
     param(
         [Parameter(Mandatory=$true, position=0)]
         [ValidateNotNullOrEmpty()]

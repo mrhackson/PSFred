@@ -1,4 +1,3 @@
-
 Function Get-MyFREDAPIKey{
     [CmdletBinding()]
     param(

@@ -1,4 +1,5 @@
 Function Get-FREDCategoryRelatedTag{
+    [CmdletBinding()]
     param(
         [Parameter(Mandatory=$true, position=0)]
         [ValidateNotNullOrEmpty()]

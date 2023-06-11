@@ -1,5 +1,6 @@
 Function Get-FredCategoryRelated{
     #Returns a list of categories to which the category has been related
+    [CmdletBinding()]
     param(
         [Parameter(Mandatory=$true, position=0)]
         [ValidateNotNullOrEmpty()]
