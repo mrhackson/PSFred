@@ -1,24 +1,31 @@
-$ModuleFolder = Split-Path $PSCommandPath -Parent
-
-$Functions = Join-Path -Path $ModuleFolder -ChildPath 'functions'
-$functions = Get-ChildItem $Functions -Recurse -Include '*.ps1' | Select-Object -ExpandProperty FullName
-
-foreach ($f in $functions) {
-  . $f
-}
-
-$Scripts = Join-Path -Path $ModuleFolder -ChildPath 'scripts'
-$Scripts = Get-ChildItem $Scripts | Select-Object -ExpandProperty FullName
-
-foreach ($s in $scripts) {
-  . $s
+function Get-FREDSources {
+    <#
+    .SYNOPSIS
+        Gets all sources of economic data.
+    .DESCRIPTION
+        Gets all sources of economic data.
+    .EXAMPLE
+        Get-FREDSources
+    .NOTES
+        For more information, please refer to the official documentation - https://research.stlouisfed.org/docs/api/fred/sources.html.
+    .LINK
+        https://research.stlouisfed.org/docs/api/fred/sources.html
+    #>
+    [CmdletBinding()]
+    [OutputType([System.Object])]
+    param ()
+    process {
+        $uri = "https://api.stlouisfed.org/fred/sources?api_key=$($global:apiKey)&file_type=json"
+        $response = Invoke-RestMethod -Uri $uri -Method Get
+        $response
+    }
 }
 
 # SIG # Begin signature block
 # MIIFlAYJKoZIhvcNAQcCoIIFhTCCBYECAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9CHtKBdqiz4eoPndFFTXuoB8
-# 8/GgggMiMIIDHjCCAgagAwIBAgIQUeZaH8Iy/KNCFtQTYggggTANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUHGBnMyqkIR+XPkQ/j2uizwMa
+# wa2gggMiMIIDHjCCAgagAwIBAgIQUeZaH8Iy/KNCFtQTYggggTANBgkqhkiG9w0B
 # AQsFADAnMSUwIwYDVQQDDBxQb3dlclNoZWxsIENvZGUgU2lnbmluZyBDZXJ0MB4X
 # DTIzMDcwMTE3MjAyMloXDTI0MDcwMTE3NDAyMlowJzElMCMGA1UEAwwcUG93ZXJT
 # aGVsbCBDb2RlIFNpZ25pbmcgQ2VydDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
@@ -38,11 +45,11 @@ foreach ($s in $scripts) {
 # AgEBMDswJzElMCMGA1UEAwwcUG93ZXJTaGVsbCBDb2RlIFNpZ25pbmcgQ2VydAIQ
 # UeZaH8Iy/KNCFtQTYggggTAJBgUrDgMCGgUAoHgwGAYKKwYBBAGCNwIBDDEKMAig
 # AoAAoQKAADAZBgkqhkiG9w0BCQMxDAYKKwYBBAGCNwIBBDAcBgorBgEEAYI3AgEL
-# MQ4wDAYKKwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQU/6B1RngW5oHCEQFSVAW3
-# CkmHQ/IwDQYJKoZIhvcNAQEBBQAEggEAJ27+ItNl9tfvAO+ObiqoxUrs4E5U80o3
-# oKI47Nr1dMVslxJdQL4mXwsZHOXHpetgnUCUDu+EwpByuZhr/v2zowF1wmU4UDw9
-# eaxSZapUaf9GOCHPcGUXLMJRmZj8yDYv7NDKayuOY0HD/nrwX7ffCMRm0O5cqYQu
-# 6OxYjv+oi7iK+KNHycTCTJLBSWy9pWrr9YFVE8EM/JmBYqOOowMfyk3p30APmCsi
-# oOj1BaCt4ujnZSvqE3LRGPtvat7IMCxT4BDkkCQZrd/dhw5p2vUJ6Nj+6470/FxW
-# LsFF3sg6awXVFoTtxaAcasgXQ3QicBwnen/4AkUwcq+zdH3RCG2p4g==
+# MQ4wDAYKKwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQU/pN7X5AktKCbY2nWCqNf
+# YLeIOa0wDQYJKoZIhvcNAQEBBQAEggEARFuD0V6athflo/ITIzIh8ZfbFJtZo+/W
+# 6fcZA/zo4uR/sYLYRavBf6Qf0/PZ3kvsM/cYVqY/nrFjo63SE1+5Pe3PiOLWKDS0
+# CV0TRQOdhiNCeKMS/zjIKCCGgOf1w+ueI5Ko5V+dGyPOe15IVOqMpKOx2Qj1nVOq
+# BnJMi8JrQfYwie0NjQ7Uu/dbvK0yTyGUE2dx7SAosEogi2ghcfkkaxyg4Pe+B2j6
+# ZS3K+pqj43SFQS6kVnad4pN72DAKCT1xodsJsveUsj8gpqkHGng81fNsUNTzYoY6
+# 6ZyRyi1CjM0xR6COKxUffoGG5TSz2YVhGsrdekt8Zqc0oosAnK+VjQ==
 # SIG # End signature block

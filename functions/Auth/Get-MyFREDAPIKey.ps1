@@ -1,24 +1,19 @@
-$ModuleFolder = Split-Path $PSCommandPath -Parent
-
-$Functions = Join-Path -Path $ModuleFolder -ChildPath 'functions'
-$functions = Get-ChildItem $Functions -Recurse -Include '*.ps1' | Select-Object -ExpandProperty FullName
-
-foreach ($f in $functions) {
-  . $f
-}
-
-$Scripts = Join-Path -Path $ModuleFolder -ChildPath 'scripts'
-$Scripts = Get-ChildItem $Scripts | Select-Object -ExpandProperty FullName
-
-foreach ($s in $scripts) {
-  . $s
+Function Get-MyFREDAPIKey{
+    [CmdletBinding()]
+    param(
+        $path = "$env:userprofile\AppData\local\fred\fred.xml"
+    )
+    # Import the credential from the XML file
+    $credential = Import-Clixml -Path $path
+    # Return the unencrypted password
+    $credential.GetNetworkCredential().Password
 }
 
 # SIG # Begin signature block
 # MIIFlAYJKoZIhvcNAQcCoIIFhTCCBYECAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9CHtKBdqiz4eoPndFFTXuoB8
-# 8/GgggMiMIIDHjCCAgagAwIBAgIQUeZaH8Iy/KNCFtQTYggggTANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQUix4QiD5uatzbFjCVD99/NpyQ
+# e42gggMiMIIDHjCCAgagAwIBAgIQUeZaH8Iy/KNCFtQTYggggTANBgkqhkiG9w0B
 # AQsFADAnMSUwIwYDVQQDDBxQb3dlclNoZWxsIENvZGUgU2lnbmluZyBDZXJ0MB4X
 # DTIzMDcwMTE3MjAyMloXDTI0MDcwMTE3NDAyMlowJzElMCMGA1UEAwwcUG93ZXJT
 # aGVsbCBDb2RlIFNpZ25pbmcgQ2VydDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
@@ -38,11 +33,11 @@ foreach ($s in $scripts) {
 # AgEBMDswJzElMCMGA1UEAwwcUG93ZXJTaGVsbCBDb2RlIFNpZ25pbmcgQ2VydAIQ
 # UeZaH8Iy/KNCFtQTYggggTAJBgUrDgMCGgUAoHgwGAYKKwYBBAGCNwIBDDEKMAig
 # AoAAoQKAADAZBgkqhkiG9w0BCQMxDAYKKwYBBAGCNwIBBDAcBgorBgEEAYI3AgEL
-# MQ4wDAYKKwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQU/6B1RngW5oHCEQFSVAW3
-# CkmHQ/IwDQYJKoZIhvcNAQEBBQAEggEAJ27+ItNl9tfvAO+ObiqoxUrs4E5U80o3
-# oKI47Nr1dMVslxJdQL4mXwsZHOXHpetgnUCUDu+EwpByuZhr/v2zowF1wmU4UDw9
-# eaxSZapUaf9GOCHPcGUXLMJRmZj8yDYv7NDKayuOY0HD/nrwX7ffCMRm0O5cqYQu
-# 6OxYjv+oi7iK+KNHycTCTJLBSWy9pWrr9YFVE8EM/JmBYqOOowMfyk3p30APmCsi
-# oOj1BaCt4ujnZSvqE3LRGPtvat7IMCxT4BDkkCQZrd/dhw5p2vUJ6Nj+6470/FxW
-# LsFF3sg6awXVFoTtxaAcasgXQ3QicBwnen/4AkUwcq+zdH3RCG2p4g==
+# MQ4wDAYKKwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQUjqDO0PDE5b67E0BSCc9e
+# 6J2KY1wwDQYJKoZIhvcNAQEBBQAEggEArgsBgrb2GHjeyKxJC2yzmx/XjyCBtRWA
+# 8WdISrpJAfR0ZwHaPhpIaERd0gPksgTr3GLFlnJ02B45+6QxuBaKFtk4BHRJwneR
+# eL/tJUU2PBNw+gclkVduCD9qVENna3VcPxPF5TCnWkRDneyNWAVUQLZsIJNN6wOm
+# OESM8PRfJMKpWSPCVe9BF6INIsMbrDdvntfjpSop6XrYvgWwz/djC/LFP1igkUeK
+# nYQUnwS2GML7zwkGGK8DxzT+zQq5eSMRNG4fZlI6mxkGUhxl/754Bfo7KZWOXJZV
+# VqVN+7f4B4eEZum6e9t2mQnP9QGf+NGmH+GmqVEhPkRYhutfbg7qJg==
 # SIG # End signature block

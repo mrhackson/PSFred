@@ -1,24 +1,20 @@
-$ModuleFolder = Split-Path $PSCommandPath -Parent
-
-$Functions = Join-Path -Path $ModuleFolder -ChildPath 'functions'
-$functions = Get-ChildItem $Functions -Recurse -Include '*.ps1' | Select-Object -ExpandProperty FullName
-
-foreach ($f in $functions) {
-  . $f
-}
-
-$Scripts = Join-Path -Path $ModuleFolder -ChildPath 'scripts'
-$Scripts = Get-ChildItem $Scripts | Select-Object -ExpandProperty FullName
-
-foreach ($s in $scripts) {
-  . $s
+Function Get-FredCategoryChildren{
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory=$true, position=0)]
+        [ValidateNotNullOrEmpty()]
+        [string]$categoryid
+    )
+    $uri = $fredapiuri + "/category/children?category_id=" + $categoryid + "&api_key=" + $fredapikey + "&file_type=json"
+    $response = Invoke-RestMethod -Uri $uri -Method Get
+    $response.categories
 }
 
 # SIG # Begin signature block
 # MIIFlAYJKoZIhvcNAQcCoIIFhTCCBYECAQExCzAJBgUrDgMCGgUAMGkGCisGAQQB
 # gjcCAQSgWzBZMDQGCisGAQQBgjcCAR4wJgIDAQAABBAfzDtgWUsITrck0sYpfvNR
-# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU9CHtKBdqiz4eoPndFFTXuoB8
-# 8/GgggMiMIIDHjCCAgagAwIBAgIQUeZaH8Iy/KNCFtQTYggggTANBgkqhkiG9w0B
+# AgEAAgEAAgEAAgEAAgEAMCEwCQYFKw4DAhoFAAQU0YSE+PpWYN0ew8GxCbK3wKxn
+# /o+gggMiMIIDHjCCAgagAwIBAgIQUeZaH8Iy/KNCFtQTYggggTANBgkqhkiG9w0B
 # AQsFADAnMSUwIwYDVQQDDBxQb3dlclNoZWxsIENvZGUgU2lnbmluZyBDZXJ0MB4X
 # DTIzMDcwMTE3MjAyMloXDTI0MDcwMTE3NDAyMlowJzElMCMGA1UEAwwcUG93ZXJT
 # aGVsbCBDb2RlIFNpZ25pbmcgQ2VydDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
@@ -38,11 +34,11 @@ foreach ($s in $scripts) {
 # AgEBMDswJzElMCMGA1UEAwwcUG93ZXJTaGVsbCBDb2RlIFNpZ25pbmcgQ2VydAIQ
 # UeZaH8Iy/KNCFtQTYggggTAJBgUrDgMCGgUAoHgwGAYKKwYBBAGCNwIBDDEKMAig
 # AoAAoQKAADAZBgkqhkiG9w0BCQMxDAYKKwYBBAGCNwIBBDAcBgorBgEEAYI3AgEL
-# MQ4wDAYKKwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQU/6B1RngW5oHCEQFSVAW3
-# CkmHQ/IwDQYJKoZIhvcNAQEBBQAEggEAJ27+ItNl9tfvAO+ObiqoxUrs4E5U80o3
-# oKI47Nr1dMVslxJdQL4mXwsZHOXHpetgnUCUDu+EwpByuZhr/v2zowF1wmU4UDw9
-# eaxSZapUaf9GOCHPcGUXLMJRmZj8yDYv7NDKayuOY0HD/nrwX7ffCMRm0O5cqYQu
-# 6OxYjv+oi7iK+KNHycTCTJLBSWy9pWrr9YFVE8EM/JmBYqOOowMfyk3p30APmCsi
-# oOj1BaCt4ujnZSvqE3LRGPtvat7IMCxT4BDkkCQZrd/dhw5p2vUJ6Nj+6470/FxW
-# LsFF3sg6awXVFoTtxaAcasgXQ3QicBwnen/4AkUwcq+zdH3RCG2p4g==
+# MQ4wDAYKKwYBBAGCNwIBFTAjBgkqhkiG9w0BCQQxFgQUVrcHbXcWzum07yZnol+E
+# UuhOF0UwDQYJKoZIhvcNAQEBBQAEggEAI2GDLoP8Rb0JTxj9IbfWCIy78R+Ry9+A
+# 7/bLK+6RON4dcJGOil5gFc0dxjJBlgu27ujqDvCP7hLnp8rToGF7r3prS86duTrL
+# 9fv4fJe1b0uYEbyVzEYa3WDwZiGbLmePrUnWrUBQHWMqVbR4NCCnisL0WC82rCEg
+# CrJzRIaVxWpxFOQClyE7zzUmpOGE1woFlEHDnt0l2Tn3JgvlaAThoKdm38WCSRAs
+# HAYMqeu84mU/V3zt6wEzIOelLroaJkCI9/s0oHlJRaptkQ5TajqJHrzD7icooVaC
+# SfkUojIzyDoyOdUzUudC9yu3qoQSI6G+jGFYybGqPJ9gI3chHmOEQA==
 # SIG # End signature block
